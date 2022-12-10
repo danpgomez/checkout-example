@@ -81,7 +81,7 @@
         <Button
             android:id="@+id/checkoutButton"
             android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_large"
             android:text="@string/checkout"
