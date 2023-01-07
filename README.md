@@ -9,4 +9,5 @@ https://youtu.be/5d7U3DUxsDo
 - Cartoon Cupcake image by [ariosbeth](https://pngtree.com/freepng/cartoon-cupcake-for-birthday-decoration_5314854.html) on [PNGTree](https://pngtree.com/)
 
 ## Screenshots and Gifs
+
 |![](./screenshots/product-detail-fragment.png)|![](./screenshots/shopping-cart-fragment.png)|![](./screenshots/checkout-example.gif)|
