@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.checkoutexample.databinding.FragmentShoppingCartBinding
 
@@ -12,6 +13,8 @@ class ShoppingCartFragment : Fragment() {
 
     private var _binding: FragmentShoppingCartBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: ShoppingCartViewModel
+    private lateinit var viewModelFactory: ShoppingCartViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,10 +22,12 @@ class ShoppingCartFragment : Fragment() {
     ): View {
         _binding = FragmentShoppingCartBinding.inflate(inflater, container, false)
         val view = binding.root
+        val orderTotal = ShoppingCartFragmentArgs.fromBundle(requireArguments()).orderTotal
+        viewModelFactory = ShoppingCartViewModelFactory(orderTotal)
+        viewModel = ViewModelProvider(this, viewModelFactory)[ShoppingCartViewModel::class.java]
 
         binding.apply {
-            val orderTotal = ShoppingCartFragmentArgs.fromBundle(requireArguments()).orderTotal
-            orderTotalAmount.text = getString(R.string.order_total_cost, orderTotal)
+            orderTotalAmount.text = viewModel.generateCartMessage()
 
             editOrderButton.setOnClickListener {
                 val action = ShoppingCartFragmentDirections.actionShoppingCartFragmentToProductDetailFragment()

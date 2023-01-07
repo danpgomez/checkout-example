@@ -15,20 +15,14 @@
         android:contentDescription="@string/cupcake_icon_desc" />
 
     <TextView
-        android:id="@+id/orderTotalDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="@string/order_total_description"
-        android:layout_marginTop="@dimen/margin_small"/>
-
-    <TextView
         android:id="@+id/orderTotalAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_medium"
         android:textSize="30sp"
         android:text="@string/order_total_cost"
-        tools:text="$25"
+        android:textAlignment="center"
+        tools:text="Thanks for your order! Your total is: $50 "
         android:layout_marginTop="@dimen/margin_medium"/>
 
     <Button
