@@ -4,6 +4,8 @@
     <string name="order_total_cost">$%d</string>
     <string name="quantity_1">1</string>
     <string name="checkout">$%d Checkout</string>
+    <string name="stock_msg">(%d items left)</string>
+    <string name="out_of_stock">Out of stock</string>
     <string name="quantity">Quantity</string>
     <string name="product_price">$5</string>
     <string name="hazelnut_cupcakes">Hazelnut Cupcakes</string>
