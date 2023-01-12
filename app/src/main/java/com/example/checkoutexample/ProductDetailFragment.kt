@@ -48,8 +48,10 @@ class ProductDetailFragment : Fragment() {
 
                 if (viewModel.remainingStock == 0) {
                     addButton.isEnabled = false
-                    stockCountMessage.text = getString(R.string.out_of_stock)
-                    stockCountMessage.setTextColor(Color.RED)
+                    stockCountMessage.apply {
+                        text = getString(R.string.out_of_stock)
+                        setTextColor(Color.RED)
+                    }
                 }
 
                 hideKeyboard(view)
