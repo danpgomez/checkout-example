@@ -6,18 +6,15 @@ class ProductDetailViewModel : ViewModel() {
     private val price = 5
     var remainingStock = 5
     var orderTotal = 0
-    var errorMessage = ""
     var insufficientStock = false
-    var outOfStock = false
 
     fun onAddButtonClicked(quantity: Int) {
-        if (quantity <= remainingStock) {
+        insufficientStock = if (quantity <= remainingStock) {
             updateStock(quantity)
             updateOrderTotal(quantity)
-            insufficientStock = false
+            false
         } else {
-            insufficientStock = true
-            generateErrorMessage()
+            true
         }
     }
 
@@ -27,10 +24,5 @@ class ProductDetailViewModel : ViewModel() {
 
     private fun updateStock(quantity: Int) {
         remainingStock -= quantity
-        if (remainingStock == 0) outOfStock = true
-    }
-
-    private fun generateErrorMessage() {
-        errorMessage = "😿 Sorry. We only have $remainingStock cupcakes."
     }
 }

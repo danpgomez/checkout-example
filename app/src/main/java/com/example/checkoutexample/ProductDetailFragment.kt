@@ -32,21 +32,22 @@ class ProductDetailFragment : Fragment() {
             checkoutButton.text = getString(R.string.checkout, viewModel.orderTotal)
             stockCountMessage.text = getString(R.string.stock_msg, viewModel.remainingStock)
 
-            addToCartButton.setOnClickListener {
+            addToCartButton.setOnClickListener { addButton ->
                 val orderQuantity = quantityNumber.text.toString().toInt()
                 viewModel.onAddButtonClicked(orderQuantity)
-                stockCountMessage.text = getString(R.string.stock_msg, viewModel.remainingStock)
 
                 if (viewModel.insufficientStock) {
                     Toast.makeText(
                         context,
-                        viewModel.errorMessage,
+                        getString(R.string.low_stock_error, viewModel.remainingStock),
                         Toast.LENGTH_LONG
                     ).show()
+                } else {
+                    stockCountMessage.text = getString(R.string.stock_msg, viewModel.remainingStock)
                 }
 
-                if (viewModel.outOfStock) {
-                    it.isEnabled = false
+                if (viewModel.remainingStock == 0) {
+                    addButton.isEnabled = false
                     stockCountMessage.text = getString(R.string.out_of_stock)
                     stockCountMessage.setTextColor(Color.RED)
                 }

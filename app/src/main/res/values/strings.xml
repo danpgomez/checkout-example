@@ -6,6 +6,7 @@
     <string name="checkout">$%d Checkout</string>
     <string name="stock_msg">(%d items left)</string>
     <string name="out_of_stock">Out of stock</string>
+    <string name="low_stock_error">😿 Sorry. We only have %d cupcakes.</string>
     <string name="quantity">Quantity</string>
     <string name="product_price">$5</string>
     <string name="hazelnut_cupcakes">Hazelnut Cupcakes</string>
