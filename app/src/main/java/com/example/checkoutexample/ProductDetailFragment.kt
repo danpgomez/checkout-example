@@ -29,7 +29,20 @@ class ProductDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ProductDetailViewModel::class.java]
 
         binding.apply {
-            checkoutButton.text = getString(R.string.checkout, viewModel.orderTotal)
+
+            viewModel.orderTotal.observe(viewLifecycleOwner) { orderTotal ->
+                with(checkoutButton) {
+                    text = getString(R.string.checkout, orderTotal)
+                    setOnClickListener {
+                        val action =
+                            ProductDetailFragmentDirections.actionProductDetailFragmentToShoppingCartFragment(
+                                orderTotal
+                            )
+                        view.findNavController().navigate(action)
+                    }
+                }
+            }
+
             stockCountMessage.text = getString(R.string.stock_msg, viewModel.remainingStock)
 
             addToCartButton.setOnClickListener { addButton ->
@@ -55,15 +68,6 @@ class ProductDetailFragment : Fragment() {
                 }
 
                 hideKeyboard(view)
-                checkoutButton.text = getString(R.string.checkout, viewModel.orderTotal)
-            }
-
-            checkoutButton.setOnClickListener {
-                val action =
-                    ProductDetailFragmentDirections.actionProductDetailFragmentToShoppingCartFragment(
-                        viewModel.orderTotal
-                    )
-                view.findNavController().navigate(action)
             }
         }
 
