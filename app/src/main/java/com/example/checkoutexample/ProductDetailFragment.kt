@@ -19,6 +19,7 @@ class ProductDetailFragment : Fragment() {
     private var _binding: FragmentProductDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: ProductDetailViewModel
+    private var stockLeft = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,29 +44,32 @@ class ProductDetailFragment : Fragment() {
                 }
             }
 
-            stockCountMessage.text = getString(R.string.stock_msg, viewModel.remainingStock)
+            viewModel.remainingStock.observe(viewLifecycleOwner) { remainingStock ->
+                stockCountMessage.text = getString(R.string.stock_msg, remainingStock)
+                stockLeft = remainingStock
 
-            addToCartButton.setOnClickListener { addButton ->
-                val orderQuantity = quantityNumber.text.toString().toInt()
-                viewModel.onAddButtonClicked(orderQuantity)
-
-                if (viewModel.insufficientStock) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.low_stock_error, viewModel.remainingStock),
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    stockCountMessage.text = getString(R.string.stock_msg, viewModel.remainingStock)
-                }
-
-                if (viewModel.remainingStock == 0) {
-                    addButton.isEnabled = false
+                if (remainingStock == 0) {
+                    addToCartButton.isEnabled = false
                     stockCountMessage.apply {
                         text = getString(R.string.out_of_stock)
                         setTextColor(Color.RED)
                     }
                 }
+            }
+
+            viewModel.insufficientStock.observe(viewLifecycleOwner) { insufficientStock ->
+                if (insufficientStock) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.low_stock_error, stockLeft),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
+            addToCartButton.setOnClickListener {
+                val orderQuantity = quantityNumber.text.toString().toInt()
+                viewModel.onAddButtonClicked(orderQuantity)
 
                 hideKeyboard(view)
             }
