@@ -11,6 +11,6 @@ Watch the tutorials on YouTube here:
 - Cartoon Cupcake image by [ariosbeth](https://pngtree.com/freepng/cartoon-cupcake-for-birthday-decoration_5314854.html) on [PNGTree](https://pngtree.com/)
 
 ## Screenshots and Gifs
-|<img src="./screenshots/product-detail-fragment.png" width=300>|<img src="./screenshots/shopping-cart-fragment.png" width=300>|
-| --- | --- |
-|<img src="./screenshots/checkout-example.gif" width=300>|
+| <img src="./screenshots/product-detail-fragment.png" width=300> |<img src="./screenshots/shopping-cart-fragment.png" width=300>|
+|-----------------------------------------------------------------| --- |
+| <img src="./screenshots/empty_cart.png" width=300>              |<img src="./screenshots/checkout-example.gif" width=300>|
