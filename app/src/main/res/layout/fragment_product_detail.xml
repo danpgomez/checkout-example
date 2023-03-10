@@ -1,110 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProductDetailFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="productDetailViewModel"
+            type="com.example.checkoutexample.ProductDetailViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/productImage"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cupcake"
-            tools:src="@tools:sample/backgrounds/scenic"
-            android:contentDescription="@string/cupcakes_header_image" />
-
-        <TextView
-            android:id="@+id/productTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="@string/hazelnut_cupcakes"
-            android:textSize="30sp" />
+        android:layout_height="match_parent"
+        tools:context=".ProductDetailFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin_medium">
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cupcake"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:contentDescription="@string/cupcakes_header_image" />
 
             <TextView
-                android:id="@+id/productPrice"
+                android:id="@+id/productTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_small"
-                android:text="@string/product_price"
-                android:textSize="20sp" />
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/hazelnut_cupcakes"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin_medium">
+
+                <TextView
+                    android:id="@+id/productPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:text="@string/product_price"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/stockCountMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:textSize="15sp"
+                    android:textStyle="italic"
+                    android:text="@{productDetailViewModel.remainingStock == 0 ? @string/out_of_stock : @string/stock_msg(productDetailViewModel.remainingStock)}"
+                    android:textColor="@{productDetailViewModel.remainingStock == 0 ? @color/red : @color/blue}"
+                    tools:text="(5 items left)" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/stockCountMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_medium"
-                android:textSize="15sp"
-                android:textStyle="italic"
-                android:textColor="#2196F3"
-                tools:text="(5 items left)" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/productDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="@string/product_description" />
-
-        <TextView
-            android:id="@+id/quantityLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
-            android:labelFor="@+id/quantityNumber"
-            android:text="@string/quantity" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/quantityNumber"
+                android:id="@+id/productDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_small"
-                android:ems="2"
-                android:gravity="center"
-                android:inputType="number"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:autofillHints="1"
-                android:text="@string/quantity_1" />
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/product_description" />
+
+            <TextView
+                android:id="@+id/quantityLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:labelFor="@+id/quantityNumber"
+                android:text="@string/quantity" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/quantityNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:ems="2"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:autofillHints="1"
+                    android:text="@string/quantity_1" />
+
+                <Button
+                    android:id="@+id/addToCartButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:enabled="@{productDetailViewModel.remainingStock == 0 ? false : true}"
+                    android:onClick="@{() -> productDetailViewModel.onAddButtonClicked(Integer.parseInt(quantityNumber.getText().toString()))}"
+                    android:text="@string/add" />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/addToCartButton"
-                android:layout_width="wrap_content"
+                android:id="@+id/checkoutButton"
+                android:layout_width="@dimen/button_width"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:text="@string/add" />
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@{@string/checkout(productDetailViewModel.orderTotal)}"
+                android:textSize="20sp" />
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/checkoutButton"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_large"
-            android:text="@string/checkout"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</layout>
