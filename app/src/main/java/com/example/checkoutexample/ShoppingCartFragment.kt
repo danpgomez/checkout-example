@@ -27,7 +27,7 @@ class ShoppingCartFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[ShoppingCartViewModel::class.java]
 
         binding.apply {
-            orderTotalAmount.text = viewModel.generateCartMessage()
+            shoppingCartViewModel = viewModel
 
             editOrderButton.setOnClickListener {
                 val action = ShoppingCartFragmentDirections.actionShoppingCartFragmentToProductDetailFragment()
