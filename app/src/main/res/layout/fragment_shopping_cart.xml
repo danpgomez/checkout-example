@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".ShoppingCartFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/cupcakeIcon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/cupcake_icon"
-        android:contentDescription="@string/cupcake_icon_desc" />
+    <data>
+        <variable
+            name="shoppingCartViewModel"
+            type="com.example.checkoutexample.ShoppingCartViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/orderTotalAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/margin_medium"
-        android:textSize="30sp"
-        android:text="@string/order_total_cost"
-        android:textAlignment="center"
-        tools:text="Thanks for your order! Your total is: $50 "
-        android:layout_marginTop="@dimen/margin_medium"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ShoppingCartFragment">
 
-    <Button
-        android:id="@+id/editOrderButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_order"
-        android:layout_marginTop="@dimen/margin_medium"/>
+        <ImageView
+            android:id="@+id/cupcakeIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/cupcake_icon"
+            android:contentDescription="@string/cupcake_icon_desc" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/orderTotalAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_medium"
+            android:textSize="30sp"
+            android:text="@{shoppingCartViewModel.generateCartMessage()}"
+            android:textAlignment="center"
+            tools:text="Thanks for your order! Your total is: $50 "
+            android:layout_marginTop="@dimen/margin_medium" />
+
+        <Button
+            android:id="@+id/editOrderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_order"
+            android:layout_marginTop="@dimen/margin_medium" />
+
+    </LinearLayout>
+</layout>
