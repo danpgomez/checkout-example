@@ -14,4 +14,5 @@
     <string name="edit_order">Edit Order</string>
     <string name="cupcake_icon_desc">Cupcake icon</string>
     <string name="add">Add</string>
+    <string name="cupcakes_header_image">cupcakes header image</string>
 </resources>

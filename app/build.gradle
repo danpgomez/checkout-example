@@ -10,12 +10,13 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
     defaultConfig {
         applicationId "com.example.checkoutexample"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 

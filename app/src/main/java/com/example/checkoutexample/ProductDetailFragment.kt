@@ -30,29 +30,17 @@ class ProductDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ProductDetailViewModel::class.java]
 
         binding.apply {
+            productDetailViewModel = viewModel
+            lifecycleOwner = viewLifecycleOwner
 
             viewModel.orderTotal.observe(viewLifecycleOwner) { orderTotal ->
                 with(checkoutButton) {
-                    text = getString(R.string.checkout, orderTotal)
                     setOnClickListener {
                         val action =
                             ProductDetailFragmentDirections.actionProductDetailFragmentToShoppingCartFragment(
                                 orderTotal
                             )
                         view.findNavController().navigate(action)
-                    }
-                }
-            }
-
-            viewModel.remainingStock.observe(viewLifecycleOwner) { remainingStock ->
-                stockCountMessage.text = getString(R.string.stock_msg, remainingStock)
-                stockLeft = remainingStock
-
-                if (remainingStock == 0) {
-                    addToCartButton.isEnabled = false
-                    stockCountMessage.apply {
-                        text = getString(R.string.out_of_stock)
-                        setTextColor(Color.RED)
                     }
                 }
             }
@@ -68,10 +56,7 @@ class ProductDetailFragment : Fragment() {
             }
 
             addToCartButton.setOnClickListener {
-                val orderQuantity = quantityNumber.text.toString().toInt()
-                viewModel.onAddButtonClicked(orderQuantity)
-
-                hideKeyboard(view)
+                hideKeyboard(view as ScrollView)
             }
         }
 
