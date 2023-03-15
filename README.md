@@ -1,4 +1,4 @@
-## Checkout Example for View Models and LiveData tutorial
+## Checkout Example for View Model, LiveData, and DataBinding tutorials
 A simple app to show how to implement View Models, LiveData, and DataBinding on Android.
 
 Watch the tutorials on YouTube here:
