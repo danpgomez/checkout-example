@@ -1,7 +1,7 @@
 ## Checkout Example for View Model, LiveData, and DataBinding tutorials
 A checkout app implementing View Models, LiveData, and DataBinding on Android.
 
-Watch the tutorials on YouTube here:
+Watch my YouTube tutorials for this project here:
 
 - https://youtu.be/5d7U3DUxsDo
 - https://youtu.be/F3SXAYtGBqE
